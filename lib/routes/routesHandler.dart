@@ -7,6 +7,7 @@ import '../pages/mine/Mine.dart';
 import '../pages/study/Study.dart';
 import '../pages/user/Login.dart';
 import '../pages/notFound/NotFound.dart';
+import '../pages/course/CourseDetail.dart';
 
 var HomeHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> parameters) {
@@ -21,4 +22,13 @@ var LoginHandler = Handler(
 var NotFoundHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> parameters) {
   return NotFoundPage();
+});
+
+var CourseDetailHandler = Handler(
+    handlerFunc: (BuildContext context, Map<String, List<String>> parameters) {
+  print(parameters);
+  return CourseDetail(
+    id: int.parse(parameters['id']!.first),
+    title: parameters['title']!.first,
+  );
 });

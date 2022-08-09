@@ -14,8 +14,7 @@ class AuthService {
     return res.data['data'];
   }
 
-  static Future<dynamic> getUserInfo(
-      {required String username, required String password}) async {
+  static Future<dynamic> getUserInfo() async {
     Response res = await dio.get('/api/v1/auth/getUserInfo');
     return res.data["data"];
   }

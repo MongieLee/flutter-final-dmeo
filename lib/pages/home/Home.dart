@@ -5,6 +5,7 @@ import 'package:final_demo/pages/home/HomeCourse.dart';
 import 'package:final_demo/services/course/CourseService.dart';
 import 'package:flutter/material.dart';
 import '../../services/home/HomeService.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -44,14 +45,13 @@ class _HomePageState extends State<HomePage> {
         slivers: [
           SliverToBoxAdapter(
             child: SizedBox(
-                height: 220, child: HomeCarousel(carousels: carousels)),
+                height: 400.h, child: HomeCarousel(carousels: carousels)),
           ),
           SliverPadding(
             padding: EdgeInsets.all(5),
-            sliver: Container(
-                child: HomeCourse(
+            sliver: HomeCourse(
               courses: carousels,
-            )),
+            ),
           )
         ],
       ),

@@ -1,3 +1,4 @@
+import 'package:final_demo/services/auth/AuthService.dart';
 import 'package:flutter/material.dart';
 import '../../utils/Global.dart';
 
@@ -21,5 +22,13 @@ class _MinePageState extends State<MinePage> {
         Text('我的'),
       ],
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    AuthService.getUserInfo().then((value) {
+      print(value);
+    });
   }
 }

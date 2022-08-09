@@ -9,7 +9,7 @@ Dio initDio() {
   BaseOptions options =
       // BaseOptions(baseUrl: 'http://mongielee.top:6606', connectTimeout: 3000);
       BaseOptions(
-    baseUrl: 'http://localhost:8080',
+    baseUrl: 'http://192.168.8.29:8080',
     connectTimeout: 3000,
   );
   options.headers["Content-Type"] = "application/json";

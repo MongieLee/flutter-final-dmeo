@@ -39,62 +39,42 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     children: [
                       TextFormField(
-                        decoration: InputDecoration(hintText: "请输入手机号"),
+                        decoration: const InputDecoration(hintText: "请输入手机号"),
                         validator: (value) {
-                          // RegExp reg = new RegExp(r'^\d{11}$');
-                          // if (!reg.hasMatch(value!)) {
-                          //   return "手机号不对";
-                          // }
-                          return null;
+                          return value!.isEmpty ? '手机号不能为空' : null;
                         },
                         onSaved: (value) {
-                          print('onSaved');
                           userForm.username = value!;
                         },
                       ),
                       TextFormField(
                         obscureText: true,
-                        decoration: InputDecoration(hintText: "请输入密码"),
+                        decoration: const InputDecoration(hintText: "请输入密码"),
                         validator: (value) {
-                          return value!.length < 3 ? '长度太短了' : null;
+                          return value!.isEmpty ? '密码不能为空' : null;
                         },
                         onSaved: (value) {
-                          print('passowrd onSaved');
                           userForm.password = value!;
                         },
                       ),
-                      ElevatedButton(
-                          onPressed: () async {
-                            if (_formKey.currentState!.validate()) {
-                              print('提交成功');
-                              print('_formKey.currentState!.save() -- before');
-                              _formKey.currentState!.save();
-                              print('_formKey.currentState!.save() -- after');
-                              print(userForm.username);
-                              print(userForm.password);
-                              var res = await AuthService.login(
-                                  username: userForm.username,
-                                  password: userForm.password);
-                              print(res);
-                              if (res != null) {
-                                //登陆成功
-                                G.router.pop(context);
-                                userProvider.doLogin(res);
-                              } else {
-                                print("登陆失败了");
-                                _formKey.currentState!.reset();
-                              }
-                            }
-                          },
-                          child: Text('登录')),
                       SizedBox(
-                        height: 10,
-                      ),
-                      ElevatedButton(
-                          onPressed: () {
-                            _formKey.currentState!.reset();
-                          },
-                          child: Text('重置')),
+                          width: double.infinity,
+                          child: ElevatedButton(
+                              onPressed: () async {
+                                if (_formKey.currentState!.validate()) {
+                                  _formKey.currentState!.save();
+                                  var res = await AuthService.login(
+                                      username: userForm.username,
+                                      password: userForm.password);
+                                  if (res != null) {
+                                    G.router.pop(context);
+                                    userProvider.doLogin(res);
+                                  } else {
+                                    _formKey.currentState!.reset();
+                                  }
+                                }
+                              },
+                              child: const Text('登录')))
                     ],
                   ))
             ]))));

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../utils/Global.dart';
 
 class HomeCourse extends StatefulWidget {
   List courses = [];
@@ -17,10 +18,14 @@ class _HomeCourseState extends State<HomeCourse> {
       var item = widget.courses[index];
       return GestureDetector(
         onTap: () {
-          print(index);
+          Map<String, dynamic> p = {'id': item['id'], 'title': item['name']};
+          print("/courseDetail${G.parseQuery(p)}");
+          // path=/courseDetail?a=1&b=2
+          G.router.navigateTo(context, "/courseDetail${G.parseQuery(p)}");
         },
         child: Container(
           color: Colors.white,
+          padding: const EdgeInsets.all(8),
           child: Flex(
             direction: Axis.horizontal,
             children: [
@@ -34,7 +39,71 @@ class _HomeCourseState extends State<HomeCourse> {
                       height: 120,
                     ),
                   )),
-              Expanded(flex: 3, child: Text('我是文本'))
+              Expanded(
+                  flex: 3,
+                  child: Container(
+                    height: 120,
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: double.infinity,
+                          child: Text(
+                            item['name'],
+                            style: const TextStyle(fontSize: 16),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          child: Text(
+                            item['name'] + '大数据开发了速度加快立法老师的课解放昆仑山搭街坊看待历史交锋的',
+                            style: const TextStyle(
+                              fontSize: 16,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        Row(children: [
+                          Container(
+                            child: Text(
+                              item['name'],
+                              style: const TextStyle(fontSize: 16),
+                            ),
+                            color: Colors.grey[200],
+                            padding: const EdgeInsets.all(5),
+                          ),
+                          Container(
+                            margin: const EdgeInsets.only(left: 10),
+                            child: Text(
+                              item['name'],
+                              style: const TextStyle(fontSize: 16),
+                            ),
+                            color: Colors.grey[200],
+                            padding: const EdgeInsets.all(5),
+                          ),
+                        ]),
+                        Row(children: [
+                          const Text(
+                            '￥200',
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.red,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          Container(
+                            margin: const EdgeInsets.only(left: 10),
+                            child: const Text(
+                              '100份',
+                              style: TextStyle(fontSize: 14),
+                            ),
+                            padding: const EdgeInsets.all(5),
+                          ),
+                        ]),
+                      ],
+                    ),
+                  ))
             ],
           ),
         ),
