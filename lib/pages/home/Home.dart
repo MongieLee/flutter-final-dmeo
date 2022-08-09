@@ -48,11 +48,10 @@ class _HomePageState extends State<HomePage> {
           ),
           SliverPadding(
             padding: EdgeInsets.all(5),
-            // sliver: Container(
-            //     height: 200,
-            //     child: HomeCourse(
-            //       courses: courses,
-            //     )),
+            sliver: Container(
+                child: HomeCourse(
+              courses: carousels,
+            )),
           )
         ],
       ),

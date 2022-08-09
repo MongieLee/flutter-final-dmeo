@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/CurrentIndexProvider.dart';
+import '../providers/UserProvider.dart';
+import '../utils/Global.dart';
 import 'home/Home.dart';
 import 'study/Study.dart';
 import 'mine/Mine.dart';
@@ -53,6 +55,8 @@ class _IndexPageState extends State<IndexPage> {
   Widget build(BuildContext context) {
     CurrentIndexProvider provider = Provider.of<CurrentIndexProvider>(context);
     int currentIndex = provider.currentIndex;
+    UserProvider userProvider = Provider.of<UserProvider>(context);
+    bool isLogin = userProvider.isLogin;
 
     return Scaffold(
       appBar: pages[currentIndex]['appBar'],
@@ -61,6 +65,16 @@ class _IndexPageState extends State<IndexPage> {
         items: items,
         currentIndex: currentIndex,
         onTap: (index) {
+          if ([1, 2].contains(index)) {
+            if (!isLogin) {
+              print('应该要登陆的');
+              G.router.navigateTo(context, '/login');
+            } else {
+              provider.changeIndex(index);
+              print('用户已登陆');
+            }
+            return;
+          }
           provider.changeIndex(index);
         },
       ),

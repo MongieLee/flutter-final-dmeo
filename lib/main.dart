@@ -2,6 +2,7 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'providers/CurrentIndexProvider.dart';
+import 'providers/UserProvider.dart';
 import 'routes/routes.dart';
 import 'utils/Global.dart';
 
@@ -10,7 +11,10 @@ void main() {
   Routes.configureRoutes(router);
   G.router = router;
   runApp(MultiProvider(
-      providers: [ChangeNotifierProvider.value(value: CurrentIndexProvider())],
+      providers: [
+        ChangeNotifierProvider.value(value: CurrentIndexProvider()),
+        ChangeNotifierProvider.value(value: UserProvider()),
+      ],
       child: const MyApp()));
 }
 
@@ -21,6 +25,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: G.navigatorKey,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
