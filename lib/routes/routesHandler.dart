@@ -1,4 +1,5 @@
 import 'package:final_demo/pages/index.dart';
+import 'package:final_demo/pages/mine/Profile.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 
@@ -22,6 +23,11 @@ var LoginHandler = Handler(
 var NotFoundHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> parameters) {
   return NotFoundPage();
+});
+
+var ProfileHandler = Handler(
+    handlerFunc: (BuildContext context, Map<String, List<String>> parameters) {
+  return Profile();
 });
 
 var CourseDetailHandler = Handler(

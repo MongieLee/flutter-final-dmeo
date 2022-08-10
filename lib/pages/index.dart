@@ -1,3 +1,4 @@
+import 'package:final_demo/services/auth/AuthService.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/CurrentIndexProvider.dart';
@@ -64,16 +65,21 @@ class _IndexPageState extends State<IndexPage> {
       bottomNavigationBar: BottomNavigationBar(
         items: items,
         currentIndex: currentIndex,
-        onTap: (index) {
+        onTap: (index) async {
           if ([1, 2].contains(index)) {
             if (!isLogin) {
               print('应该要登陆的');
               G.router.navigateTo(context, '/login');
+              return;
             } else {
-              provider.changeIndex(index);
-              print('用户已登陆');
+              if (userProvider.userInfo.isEmpty) {
+                print('还没有用户信息，需要请求');
+                Map userInfo = await AuthService.getUserInfo();
+                userProvider.setUserInfo = userInfo;
+              } else {
+                print('已经有用户信息不用请求了');
+              }
             }
-            return;
           }
           provider.changeIndex(index);
         },

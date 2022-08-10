@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class UserProvider with ChangeNotifier {
   bool _isLogin = false;
   Map _user = {};
+  Map _userInfo = {};
 
   bool get isLogin => _isLogin;
 
@@ -11,6 +12,12 @@ class UserProvider with ChangeNotifier {
   }
 
   Map get user => _user;
+
+  Map get userInfo => _userInfo;
+
+  set setUserInfo(Map userInfo) {
+    _userInfo = userInfo;
+  }
 
   doLogin(data) {
     if (data != null) {
@@ -24,6 +31,7 @@ class UserProvider with ChangeNotifier {
   doLogout() {
     _isLogin = false;
     _user = {};
+    _userInfo = {};
 
     notifyListeners();
   }
