@@ -70,7 +70,9 @@ class _CourseDetailState extends State<CourseDetail> {
             ),
           )
         ]),
-        body: ListView(
+        body: SingleChildScrollView(
+            // shrinkWrap: true,
+            child: Column(
           children: [
             courseDetail.imagePath.isNotEmpty
                 ? Image.network(
@@ -139,7 +141,7 @@ class _CourseDetailState extends State<CourseDetail> {
               ),
             )
           ],
-        ));
+        )));
   }
 
   @override

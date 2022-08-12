@@ -3,6 +3,8 @@ import 'package:final_demo/services/auth/AuthService.dart';
 import 'package:flutter/material.dart';
 import '../../utils/Global.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:map_launcher/map_launcher.dart';
 
 class MinePage extends StatefulWidget {
   const MinePage({Key? key}) : super(key: key);
@@ -13,6 +15,10 @@ class MinePage extends StatefulWidget {
 
 class _MinePageState extends State<MinePage> {
   double iconSize = 20;
+
+  _lanunchUrl(_url) async {
+    await canLaunch(_url) ? launch(_url) : throw '无法跳转';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -106,8 +112,16 @@ class _MinePageState extends State<MinePage> {
           ListTile(
             leading: Icon(Icons.settings, size: iconSize),
             trailing: Icon(Icons.arrow_forward_ios, size: iconSize),
-            title: Text("设置"),
-            onTap: () {},
+            title: Text("设置（打开地图测试）"),
+            onTap: () async {
+              // final availableMaps = await MapLauncher.installedMaps;
+              // print(
+              //     availableMaps); // [AvailableMap { mapName: Google Maps, mapType: google }, ...]
+              // 113.593132,22.34922
+              String url =
+                  'androidamap://viewReGeo?sourceApplication="中山大学珠海校区"&lat=22.34922&lon=113.593132&dev=0';
+              await canLaunch(url) && await launch(url);
+            },
           ),
           ListTile(
             leading: Icon(Icons.help_outline, size: iconSize),
@@ -119,7 +133,9 @@ class _MinePageState extends State<MinePage> {
             leading: Icon(Icons.info_outline, size: iconSize),
             trailing: Icon(Icons.arrow_forward_ios, size: iconSize),
             title: Text("关于"),
-            onTap: () {},
+            onTap: () {
+              _lanunchUrl("http://www.baidu.com");
+            },
           ),
           ListTile(
             leading: Icon(Icons.logout, size: iconSize),
