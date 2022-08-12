@@ -118,9 +118,21 @@ class _MinePageState extends State<MinePage> {
               // print(
               //     availableMaps); // [AvailableMap { mapName: Google Maps, mapType: google }, ...]
               // 113.593132,22.34922
-              String url =
-                  'androidamap://viewReGeo?sourceApplication="中山大学珠海校区"&lat=22.34922&lon=113.593132&dev=0';
-              await canLaunch(url) && await launch(url);
+              String url = Uri.encodeFull(
+                  'iosamap://viewReGeo?sourceApplication="中山大学珠海校区"&lat=22.34922&lon=113.593132&dev=0');
+              print(url);
+              "iosamap://navi?sourceApplication=%@&poiname=%@&lat=%@&lon=%@&dev=1";
+
+              final availableMaps = await MapLauncher.installedMaps;
+              print(
+                  availableMaps); // [AvailableMap { mapName: Google Maps, mapType: google }, ...]
+
+              await availableMaps.last.showMarker(
+                coords: Coords(22.34922, 113.593132),
+                title: "中山大学珠海校区",
+              );
+              // print(await canLaunch(url));
+              // await canLaunch(url) && await launch(url);
             },
           ),
           ListTile(

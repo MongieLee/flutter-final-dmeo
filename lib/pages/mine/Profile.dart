@@ -51,10 +51,12 @@ class _ProfileState extends State<Profile> {
       var res = await FileService.singleUploadFile(
           file: FormData.fromMap({"file": file, "b": 1}));
       print(res);
+
+      setState(() {
+        tempPath = res['path'];
+        // _image = File(pickedFile.path);
+      });
     }
-    setState(() {
-      _image = File(pickedFile.path);
-    });
   }
 
   Widget renderBottomSheet(BuildContext context) {
