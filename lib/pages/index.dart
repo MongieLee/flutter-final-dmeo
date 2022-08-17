@@ -16,6 +16,7 @@ class IndexPage extends StatefulWidget {
 }
 
 class _IndexPageState extends State<IndexPage> {
+  late PageController _pageController;
   final List<BottomNavigationBarItem> items = const [
     BottomNavigationBarItem(
         icon: Icon(Icons.home), label: '首页', backgroundColor: Colors.red),
@@ -24,6 +25,15 @@ class _IndexPageState extends State<IndexPage> {
     BottomNavigationBarItem(
         icon: Icon(Icons.person), label: '我', backgroundColor: Colors.red),
   ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _pageController = PageController(
+        initialPage:
+            G.getCurrentContext().watch<CurrentIndexProvider>().currentIndex);
+  }
 
   final List pages = [
     {
@@ -61,7 +71,11 @@ class _IndexPageState extends State<IndexPage> {
 
     return Scaffold(
       appBar: pages[currentIndex]['appBar'],
-      body: pages[currentIndex]['page'],
+      // body: pages[currentIndex]['page'],
+      body: PageView(
+        controller: _pageController,
+        children: pages.map<Widget>((e) => e['page']).toList(),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: items,
         currentIndex: currentIndex,
@@ -82,6 +96,9 @@ class _IndexPageState extends State<IndexPage> {
             }
           }
           provider.changeIndex(index);
+          setState(() {
+            _pageController.jumpToPage(index);
+          });
         },
       ),
     );

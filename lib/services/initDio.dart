@@ -9,8 +9,8 @@ Dio initDio({bool isMultipart = false}) {
   BaseOptions options =
       // BaseOptions(baseUrl: 'http://mongielee.top:6606', connectTimeout: 3000);
       BaseOptions(
-    baseUrl: 'http://192.168.8.29:8080',
-    connectTimeout: 3000,
+    baseUrl: 'http://192.168.8.44:8080',
+    // connectTimeout: 6000,
   );
   options.headers["Content-Type"] =
       isMultipart ? "multipart/form-data" : "application/json";

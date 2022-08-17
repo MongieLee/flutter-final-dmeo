@@ -22,10 +22,10 @@ class CourseEntity {
 class _CourseDetailState extends State<CourseDetail> {
   CourseEntity courseDetail = CourseEntity();
   final List<Widget> _tabs = [
-    Tab(
+    const Tab(
       text: "详情",
     ),
-    Tab(
+    const Tab(
       text: "目录",
     )
   ];

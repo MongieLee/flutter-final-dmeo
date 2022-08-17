@@ -22,7 +22,8 @@ class CarouselItem {
   CarouselItem(this.id, this.img, this.name);
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+    with AutomaticKeepAliveClientMixin {
   List carousels = [];
   List courses = [];
 
@@ -39,6 +40,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Container(
       color: Colors.grey[100],
       child: CustomScrollView(
@@ -63,4 +65,7 @@ class _HomePageState extends State<HomePage> {
     // TODO: implement dispose
     super.dispose();
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
