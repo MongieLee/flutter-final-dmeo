@@ -235,6 +235,8 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 flutterWebViewPlugin.launch(
                   selectedUrl,
+                  withJavascript: true,
+                  javascriptChannels: jsChannels,
                   rect: Rect.fromLTWH(
                       0.0, 0.0, MediaQuery.of(context).size.width, 400.0),
                   userAgent: kAndroidUserAgent,
