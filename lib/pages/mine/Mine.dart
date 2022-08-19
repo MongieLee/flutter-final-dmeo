@@ -1,6 +1,8 @@
 import 'package:final_demo/providers/UserProvider.dart';
 import 'package:final_demo/services/auth/AuthService.dart';
 import 'package:flutter/material.dart';
+// import 'package:geolocator/geolocator.dart';
+// import 'package:toast/toast.dart';
 import '../../utils/Global.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -15,13 +17,49 @@ class MinePage extends StatefulWidget {
 
 class _MinePageState extends State<MinePage> {
   double iconSize = 20;
+  // final GeolocatorPlatform _geolocatorPlatform = GeolocatorPlatform.instance;
 
   _lanunchUrl(_url) async {
     await canLaunch(_url) ? launch(_url) : throw '无法跳转';
   }
 
+  // Future<void> _getCurrentPosition() async {
+  //   final hasPermission = await _handlePermission();
+  //
+  //   if (!hasPermission) {
+  //     return;
+  //   }
+  //
+  //   final position = await _geolocatorPlatform.getCurrentPosition();
+  //   print(position);
+  // }
+
+  // Future<bool> _handlePermission() async {
+  //   bool serviceEnabled;
+  //   LocationPermission permission;
+  //   // Test if location services are enabled.
+  //   serviceEnabled = await _geolocatorPlatform.isLocationServiceEnabled();
+  //   if (!serviceEnabled) {
+  //     return false;
+  //   }
+  //
+  //   permission = await _geolocatorPlatform.checkPermission();
+  //   if (permission == LocationPermission.denied) {
+  //     permission = await _geolocatorPlatform.requestPermission();
+  //     if (permission == LocationPermission.denied) {
+  //       return false;
+  //     }
+  //   }
+  //   if (permission == LocationPermission.deniedForever) {
+  //     return false;
+  //   }
+  //   return true;
+  // }
+
   @override
   Widget build(BuildContext context) {
+    // _getCurrentPosition();
+    // ToastContext().init(context);
     UserProvider userProvider = Provider.of<UserProvider>(context);
     Map _userInfo = userProvider.userInfo;
     print(_userInfo);
@@ -139,7 +177,9 @@ class _MinePageState extends State<MinePage> {
             leading: Icon(Icons.help_outline, size: iconSize),
             trailing: Icon(Icons.arrow_forward_ios, size: iconSize),
             title: Text("帮助与反馈"),
-            onTap: () {},
+            onTap: () {
+              // Toast.show("测试插件");
+            },
           ),
           ListTile(
             leading: Icon(Icons.info_outline, size: iconSize),

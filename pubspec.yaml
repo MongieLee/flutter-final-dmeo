@@ -32,16 +32,22 @@ dependencies:
   provider: ^4.3.3
   dio: ^3.0.10
   fluro: ^1.7.8
-  image_picker: ^0.6.7+22
+#  image_picker: ^0.6.7+22
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   flutter_swiper: ^1.1.6
   flutter_screenutil: ^5.5.3+2
-  url_launcher: ^5.7.10
+  url_launcher: ^6.1.5
   map_launcher: ^2.3.0+1
   html: 0.14.0+2
   flutter_webview_plugin: ^0.4.0
+#  toast: ^0.2.9
+#  geolocator: 7.7.1
+  geolocator: 5.3.2+2
+#  经测试这个版本5.3.2+2与webview插件兼容
+  permission_handler: ^9.0.1
+#  经测试这个版本^9.0.1与webview插件兼容
 
 dev_dependencies:
   flutter_test:

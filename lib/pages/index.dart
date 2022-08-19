@@ -80,21 +80,21 @@ class _IndexPageState extends State<IndexPage> {
         items: items,
         currentIndex: currentIndex,
         onTap: (index) async {
-          if ([1, 2].contains(index)) {
-            if (!isLogin) {
-              print('应该要登陆的');
-              G.router.navigateTo(context, '/login');
-              return;
-            } else {
-              if (userProvider.userInfo.isEmpty) {
-                print('还没有用户信息，需要请求');
-                Map userInfo = await AuthService.getUserInfo();
-                userProvider.setUserInfo = userInfo;
-              } else {
-                print('已经有用户信息不用请求了');
-              }
-            }
-          }
+          // if ([1, 2].contains(index)) {
+          //   if (!isLogin) {
+          //     print('应该要登陆的');
+          //     G.router.navigateTo(context, '/login');
+          //     return;
+          //   } else {
+          //     if (userProvider.userInfo.isEmpty) {
+          //       print('还没有用户信息，需要请求');
+          //       Map userInfo = await AuthService.getUserInfo();
+          //       userProvider.setUserInfo = userInfo;
+          //     } else {
+          //       print('已经有用户信息不用请求了');
+          //     }
+          //   }
+          // }
           provider.changeIndex(index);
           setState(() {
             _pageController.jumpToPage(index);

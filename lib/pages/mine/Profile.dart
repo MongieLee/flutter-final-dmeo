@@ -3,7 +3,7 @@ import 'package:final_demo/providers/UserProvider.dart';
 import 'package:final_demo/services/file/FileService.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:image_picker/image_picker.dart';
+// import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import '../../utils/Global.dart';
 
@@ -15,7 +15,7 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  final picker = ImagePicker();
+  // final picker = ImagePicker();
   File? _image;
   bool _isEditable = false;
   String _initText = '';
@@ -24,39 +24,39 @@ class _ProfileState extends State<Profile> {
   late TextEditingController _editingController;
 
   Future _takePhoto() async {
-    final pickedFile = await picker.getImage(source: ImageSource.camera);
-    if (pickedFile != null) {
-      _image = File(pickedFile.path);
-      String? path = _image?.path;
-      print(path);
-      var file = await MultipartFile.fromFile(path);
-      var res = await FileService.singleUploadFile(
-          file: FormData.fromMap({"file": file, "b": 1}));
-      print(res);
-      setState(() {
-        tempPath = res['path'];
-        // _image = File(pickedFile.path);
-      });
-    }
+    // final pickedFile = await picker.getImage(source: ImageSource.camera);
+    // if (pickedFile != null) {
+    //   _image = File(pickedFile.path);
+    //   String? path = _image?.path;
+    //   print(path);
+    //   var file = await MultipartFile.fromFile(path);
+    //   var res = await FileService.singleUploadFile(
+    //       file: FormData.fromMap({"file": file, "b": 1}));
+    //   print(res);
+    //   setState(() {
+    //     tempPath = res['path'];
+    //     // _image = File(pickedFile.path);
+    //   });
+    // }
   }
 
   /// 在相册选
   Future _takeGallery() async {
-    final pickedFile = await picker.getImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      _image = File(pickedFile.path);
-      String? path = _image?.path;
-      print(path);
-      var file = await MultipartFile.fromFile(path);
-      var res = await FileService.singleUploadFile(
-          file: FormData.fromMap({"file": file, "b": 1}));
-      print(res);
-
-      setState(() {
-        tempPath = res['path'];
-        // _image = File(pickedFile.path);
-      });
-    }
+    // final pickedFile = await picker.getImage(source: ImageSource.gallery);
+    // if (pickedFile != null) {
+    //   _image = File(pickedFile.path);
+    //   String? path = _image?.path;
+    //   print(path);
+    //   var file = await MultipartFile.fromFile(path);
+    //   var res = await FileService.singleUploadFile(
+    //       file: FormData.fromMap({"file": file, "b": 1}));
+    //   print(res);
+    //
+    //   setState(() {
+    //     tempPath = res['path'];
+    //     // _image = File(pickedFile.path);
+    //   });
+    // }
   }
 
   Widget renderBottomSheet(BuildContext context) {
